@@ -12,18 +12,23 @@
 
 const moves = ["rock", "paper", "scissors"];
 
-let playerInput = prompt("Please choose either Rock, Paper or Scissors.")
-const playerSelection = playerInput.toLowerCase()
+function getPlayerChoice() {
+    return prompt("Please choose either Rock, Paper or Scissors.").toLowerCase()
+}
 
 function getComputerChoice() {
     return moves[Math.floor(Math.random() * moves.length)];
 }
 
-const computerSelection = getComputerChoice();
-
+let playerSelection = getPlayerChoice
+let computerSelection = getComputerChoice
 
 function playRound(playerSelection, computerSelection) {
-    
+
+    playerSelection = getPlayerChoice()
+    computerSelection = getComputerChoice()
+
+
     if (playerSelection === computerSelection){
     console.log("It's a tie?")
     }
@@ -56,7 +61,15 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-playRound(playerSelection, computerSelection)
+function game() {
+    playRound()
+    playRound()
+    playRound()
+    playRound()
+    playRound()
+}
+
+game()
 
 </script>
 
