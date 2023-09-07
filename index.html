@@ -23,42 +23,62 @@ function getComputerChoice() {
 let playerSelection = getPlayerChoice
 let computerSelection = getComputerChoice
 
+let playerScore = 0
+let computerScore = 0
+
 function playRound(playerSelection, computerSelection) {
 
     playerSelection = getPlayerChoice()
     computerSelection = getComputerChoice()
 
-
     if (playerSelection === computerSelection){
-    console.log("It's a tie?")
+    console.log("It's a tie -- you both chose "+ playerSelection + "!")
     }
 
     else if (playerSelection === "rock" && computerSelection === "scissors"){
+    playerScore++;
     console.log("You win!");
     }
 
     else if (playerSelection === "rock" && computerSelection === "paper"){
+    computerScore++;
     console.log("You lose...");
     }
 
     else if (playerSelection === "paper" && computerSelection === "rock"){
+    playerScore++;
     console.log("You win!");
     }
 
     else if (playerSelection === "paper" && computerSelection === "scissors"){
+    computerScore++;
     console.log("You lose...");
     }
 
     else if (playerSelection === "scissors" && computerSelection === "rock"){
+    computerScore++;
     console.log("You lose...");
     }
 
     else if (playerSelection === "scissors" && computerSelection === "paper"){
+    playerScore++;
     console.log("You win!");
     }
 
     else console.log("You must have entered something wrong...");
 
+}
+
+function finalScore() {
+    if (playerScore === computerScore) {
+    console.log("It's a draw! You both scored " + playerScore + "!");
+    }
+
+    else if (playerScore > computerScore) {
+    console.log("You win! You beat the computer " + playerScore + "-" + computerScore + "!");
+    }
+
+    else console.log("You lose... The computer beat you " + computerScore + "-" + playerScore + "...")
 }
 
 function game() {
@@ -67,6 +87,7 @@ function game() {
     playRound()
     playRound()
     playRound()
+    finalScore()
 }
 
 game()
