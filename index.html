@@ -124,10 +124,6 @@ function playRound() {
         resultMessage = "You must have entered something wrong..."
     }
 
-    const resultElement = resultMessage === "You win!" ? win :
-                          resultMessage === "It's a tie -- you both chose " + playerSelection + "!" ? tie :
-                          resultMessage === "You lose..." ? lose : error;
-
     resultMessageElement.textContent = resultMessage;
 
 }
