@@ -10,8 +10,9 @@
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
 
-    <div id="results">
-        <h1>Results</h1>
+    <div id="results-box">
+        <h1 id="results">Results</h1>
+        <p id="liveScore">Player 0 - 0 Computer</p>
     </div>
 </body>
 
@@ -27,6 +28,8 @@ const rock = document.querySelector('#rock')
 const paper = document.querySelector('#paper')
 const scissors = document.querySelector('#scissors')
 
+const liveScore = document.querySelector('#liveScore')
+
 let playerSelection
 let computerSelection
 
@@ -34,6 +37,7 @@ rock.addEventListener('click', () => {
     playerSelection = "rock";
     computerSelection = getComputerChoice();
     playRound();
+    liveScore.textContent = ("Player " + playerScore + " - " + computerScore + " Computer");
 
     if (playerScore ==  5 || computerScore == 5) {
        finalScore();
@@ -45,6 +49,7 @@ paper.addEventListener('click', () => {
     playerSelection = "paper";
     computerSelection = getComputerChoice();
     playRound();
+    liveScore.textContent = ("Player " + playerScore + " - " + computerScore + " Computer");
 
     if (playerScore ==  5 || computerScore == 5) {
        finalScore();
@@ -56,6 +61,7 @@ scissors.addEventListener('click', () => {
     playerSelection = "scissors";
     computerSelection = getComputerChoice();
     playRound();
+    liveScore.textContent = ("Player " + playerScore + " - " + computerScore + " Computer");
 
     if (playerScore ==  5 || computerScore == 5) {
        finalScore();
@@ -69,6 +75,7 @@ const lose = document.createElement('p');
 const error = document.createElement('p');
 
 const results = document.querySelector('#results')
+const resultsBox = document.querySelector('#results-box')
 
 
 let playerScore = 0
@@ -77,49 +84,49 @@ let computerScore = 0
 function playRound() {
 
     if (playerSelection === computerSelection){
-        win.textContent = ("It's a tie -- you both chose "+ playerSelection + "!")
-        results.appendChild(tie);
+        tie.textContent = ("It's a tie -- you both chose "+ playerSelection + "!")
+        resultsBox.appendChild(tie);
     }
 
     else if (playerSelection === "rock" && computerSelection === "scissors"){
         playerScore++;
         win.textContent = ("You win!");
-        results.appendChild(win);
+        resultsBox.appendChild(win);
     }
 
     else if (playerSelection === "rock" && computerSelection === "paper"){
         computerScore++;
         lose.textContent = ("You lose...");
-        results.appendChild(lose);
+        resultsBox.appendChild(lose);
     }
 
     else if (playerSelection === "paper" && computerSelection === "rock"){
         playerScore++;
         win.textContent = ("You win!");
-        results.appendChild(win);
+        resultsBox.appendChild(win);
     }
 
     else if (playerSelection === "paper" && computerSelection === "scissors"){
         computerScore++;
         lose.textContent = ("You lose...");
-        results.appendChild(lose);
+        resultsBox.appendChild(lose);
     }
 
     else if (playerSelection === "scissors" && computerSelection === "rock"){
         computerScore++;
         lose.textContent = ("You lose...");
-        results.appendChild(lose);
+        resultsBox.appendChild(lose);
     }
 
     else if (playerSelection === "scissors" && computerSelection === "paper"){
         playerScore++;
         win.textContent = ("You win!");
-        results.appendChild(win);
+        resultsBox.appendChild(win);
     }
 
     else {
         error.textContent = "You must have entered something wrong..."
-        results.appendChild(error);
+        resultsBox.appendChild(error);
     }
 ;
 
@@ -140,10 +147,6 @@ function finalScore() {
         results.appendChild(overallLoser);
     }
 }
-
-
-overallWinner.textContent = ("You lose...");
-results.appendChild(lose);
 
 </script>
 
