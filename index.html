@@ -9,6 +9,10 @@
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
+
+    <div id="results">
+        <h1>Results</h1>
+    </div>
 </body>
 
 <script>
@@ -27,24 +31,44 @@ let playerSelection
 let computerSelection
 
 rock.addEventListener('click', () => {
-playerSelection = "rock";
-computerSelection = getComputerChoice();
-playRound();
+    playerSelection = "rock";
+    computerSelection = getComputerChoice();
+    playRound();
+
+    if (playerScore ==  5 || computerScore == 5) {
+       finalScore();
+    }
+
 });
 
 paper.addEventListener('click', () => {
-playerSelection = "paper";
-computerSelection = getComputerChoice();
-playRound();
+    playerSelection = "paper";
+    computerSelection = getComputerChoice();
+    playRound();
+
+    if (playerScore ==  5 || computerScore == 5) {
+       finalScore();
+    }
+    
 });
 
 scissors.addEventListener('click', () => {
-playerSelection = "scissors";
-computerSelection = getComputerChoice();
-playRound();
+    playerSelection = "scissors";
+    computerSelection = getComputerChoice();
+    playRound();
+
+    if (playerScore ==  5 || computerScore == 5) {
+       finalScore();
+    }
+    
 });
 
+const win = document.createElement('p');
+const tie = document.createElement('p');
+const lose = document.createElement('p');
+const error = document.createElement('p');
 
+const results = document.querySelector('#results')
 
 
 let playerScore = 0
@@ -53,56 +77,73 @@ let computerScore = 0
 function playRound() {
 
     if (playerSelection === computerSelection){
-    console.log("It's a tie -- you both chose "+ playerSelection + "!")
+        win.textContent = ("It's a tie -- you both chose "+ playerSelection + "!")
+        results.appendChild(tie);
     }
 
     else if (playerSelection === "rock" && computerSelection === "scissors"){
-    playerScore++;
-    console.log("You win!");
+        playerScore++;
+        win.textContent = ("You win!");
+        results.appendChild(win);
     }
 
     else if (playerSelection === "rock" && computerSelection === "paper"){
-    computerScore++;
-    console.log("You lose...");
+        computerScore++;
+        lose.textContent = ("You lose...");
+        results.appendChild(lose);
     }
 
     else if (playerSelection === "paper" && computerSelection === "rock"){
-    playerScore++;
-    console.log("You win!");
+        playerScore++;
+        win.textContent = ("You win!");
+        results.appendChild(win);
     }
 
     else if (playerSelection === "paper" && computerSelection === "scissors"){
-    computerScore++;
-    console.log("You lose...");
+        computerScore++;
+        lose.textContent = ("You lose...");
+        results.appendChild(lose);
     }
 
     else if (playerSelection === "scissors" && computerSelection === "rock"){
-    computerScore++;
-    console.log("You lose...");
+        computerScore++;
+        lose.textContent = ("You lose...");
+        results.appendChild(lose);
     }
 
     else if (playerSelection === "scissors" && computerSelection === "paper"){
-    playerScore++;
-    console.log("You win!");
+        playerScore++;
+        win.textContent = ("You win!");
+        results.appendChild(win);
     }
 
-    else console.log("You must have entered something wrong...");
+    else {
+        error.textContent = "You must have entered something wrong..."
+        results.appendChild(error);
+    }
+;
 
 }
+
+const overallWinner = document.createElement('p');
+const overallLoser = document.createElement('p');
+
 
 function finalScore() {
-    if (playerScore === computerScore) {
-    console.log("It's a draw! You both scored " + playerScore + "!");
+    if (playerScore > computerScore) {
+        overallWinner.textContent = ("You win! You beat the computer " + playerScore + "-" + computerScore + "!");
+        results.appendChild(overallWinner);
     }
 
-    else if (playerScore > computerScore) {
-    console.log("You win! You beat the computer " + playerScore + "-" + computerScore + "!");
+    else { 
+        overallLoser.textContent = ("You lose... The computer beat you " + computerScore + "-" + playerScore + "...")
+        results.appendChild(overallLoser);
     }
-
-    else console.log("You lose... The computer beat you " + computerScore + "-" + playerScore + "...")
 }
 
 
+overallWinner.textContent = ("You lose...");
+results.appendChild(lose);
 
 </script>
 
