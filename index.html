@@ -6,30 +6,51 @@
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
 </body>
 
 <script>
 
 const moves = ["rock", "paper", "scissors"];
 
-function getPlayerChoice() {
-    return prompt("Please choose either Rock, Paper or Scissors.").toLowerCase()
-}
-
 function getComputerChoice() {
     return moves[Math.floor(Math.random() * moves.length)];
 }
 
-let playerSelection = getPlayerChoice
-let computerSelection = getComputerChoice
+const rock = document.querySelector('#rock')
+const paper = document.querySelector('#paper')
+const scissors = document.querySelector('#scissors')
+
+let playerSelection
+let computerSelection
+
+rock.addEventListener('click', () => {
+playerSelection = "rock";
+computerSelection = getComputerChoice();
+playRound();
+});
+
+paper.addEventListener('click', () => {
+playerSelection = "paper";
+computerSelection = getComputerChoice();
+playRound();
+});
+
+scissors.addEventListener('click', () => {
+playerSelection = "scissors";
+computerSelection = getComputerChoice();
+playRound();
+});
+
+
+
 
 let playerScore = 0
 let computerScore = 0
 
-function playRound(playerSelection, computerSelection) {
-
-    playerSelection = getPlayerChoice()
-    computerSelection = getComputerChoice()
+function playRound() {
 
     if (playerSelection === computerSelection){
     console.log("It's a tie -- you both chose "+ playerSelection + "!")
@@ -81,16 +102,7 @@ function finalScore() {
     else console.log("You lose... The computer beat you " + computerScore + "-" + playerScore + "...")
 }
 
-function game() {
-    playRound()
-    playRound()
-    playRound()
-    playRound()
-    playRound()
-    finalScore()
-}
 
-game()
 
 </script>
 
